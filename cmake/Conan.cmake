@@ -1,4 +1,4 @@
-macro(run_conan)
+function(setup_conan)
   # Download automatically, you can also just copy the conan.cmake file
   if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
@@ -12,10 +12,11 @@ macro(run_conan)
     bincrafters
     URL
     https://api.bintray.com/conan/bincrafters/public-conan)
+endfunction()
 
+macro(install_local_conanfile)
   conan_cmake_run(
     REQUIRES
-    ${CONAN_EXTRA_REQUIRES}
     CONANFILE
     conanfile.txt
     OPTIONS
